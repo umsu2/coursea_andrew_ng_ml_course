@@ -26,3 +26,57 @@ since it's using partial derviatives the alpha would not need to be changed beca
 would approach 0, and thus steps would get smaller eacht time
 
 * batch gradient descent - each step of descent uses all the training samples
+
+
+matrix - refresher
+dimension of a matrix = # of rows * # of cols 
+R ^(2 x3 ) matrix of 2 x 3 size.
+matrix entries 
+
+Aij = ith row, jth col
+
+vector is a special matrix, it is a nx1 matrix
+4 dimensional vector = 4 element matrix or nx4.  or known as R^4
+yi = ith element of vector
+
+
+capital letter refers to matrix.  (normally)
+
+
+matrix operations
+----------------
+addition, A + B = Aij + Bij .... [must be the same dimension]
+scalar * matrix  = Aij * scalar .... [same dimension] 
+
+matrix vector multiplication
+3x2 matrix * 2 x 1 matrix => 3 x 1 matrix 
+matrix multiplication is much faster than using for loops due to optimization  using cuda or some
+parallelization
+
+matrix matrix multiplication
+do the same as matrix vector mulitplication then put them back together
+
+2x 3 matrix * 3x2 matrix => 2 x 2 matrix
+linear regresssion => finding result[predictions] of different hypothese. 
+
+identity matrix = I
+I x A = A; A x I = A
+
+matrix inverse
+AA^-1 = A^-1A = I
+only applicable to square matrix
+
+matrices that doesn't have inverse is called singlular or degenerate
+
+
+matrix transpose
+
+----------------------
+properties of matrix multiplication
+* not commutative
+AxB != BxA
+* associative
+AxBxC = Ax(BxC) = (AxB) x C
+
+
+
