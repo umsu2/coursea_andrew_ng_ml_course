@@ -30,6 +30,7 @@
 
 %% Clear and Close Figures
 clear ; close all; clc
+graphics_toolkit('gnuplot');
 
 fprintf('Loading data ...\n');
 
@@ -83,7 +84,7 @@ fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
 alpha = 0.01;
-num_iters = 400;
+num_iters = 50;
 
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
@@ -91,20 +92,50 @@ theta = zeros(3, 1);
 
 % Plot the convergence graph
 figure;
-plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
-xlabel('Number of iterations');
-ylabel('Cost J');
+alphas_to_try = [1,0.3,0.1,0.03,0.01];
+for i = alphas_to_try
+    fprintf('calculating theta %d \n', i);
+    theta = zeros(3, 1);
+    [theta, J_history] = gradientDescentMulti(X, y, theta, i, num_iters);
+    plot(1:numel(J_history), J_history, sprintf("-;alpha %d;",i), 'LineWidth', 2);
+    %legend(sprintf('alpha %d' , i) );
+    xlabel('Number of iterations');
+    ylabel('Cost J');
+    hold on;
+end
+hold off;
+pause;
+
+
+
+alpha = 0.01;
+num_iters = 400;
+
+% Init Theta and Run Gradient Descent 
+theta = zeros(3, 1);
+[theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');
 fprintf(' %f \n', theta);
 fprintf('\n');
 
+
+
+
+
+
+
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
+
+X_norm = ([1650 3] - mu ) ./ sigma
+% Add intercept term to X
+X_norm = [1 X_norm]
+price = X_norm * theta;
 
 
 % ============================================================
@@ -151,7 +182,7 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
 
-
+price = [1 1650 3] * theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...

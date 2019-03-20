@@ -74,6 +74,7 @@ pause;
 
 fprintf('\nRunning Gradient Descent ...\n')
 % run gradient descent
+
 theta = gradientDescent(X, y, theta, alpha, iterations);
 
 % print theta to screen
@@ -82,6 +83,7 @@ fprintf('%f\n', theta);
 fprintf('Expected theta values (approx)\n');
 fprintf(' -3.6303\n  1.1664\n\n');
 
+figure;
 % Plot the linear fit
 hold on; % keep previous plot visible
 plot(X(:,2), X*theta, '-')
@@ -89,6 +91,7 @@ legend('Training data', 'Linear regression')
 hold off % don't overlay any more plots on this figure
 
 % Predict values for population sizes of 35,000 and 70,000
+
 predict1 = [1, 3.5] *theta;
 fprintf('For population = 35,000, we predict a profit of %f\n',...
     predict1*10000);
@@ -133,3 +136,5 @@ contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;
 plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+
+

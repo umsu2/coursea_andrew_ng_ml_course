@@ -18,16 +18,22 @@ for iter = 1:num_iters
     %
 
 
-
-
-
+    theta = theta - alpha / m * ( X' * (X * theta - y) );
 
 
     % ============================================================
 
     % Save the cost J in every iteration    
-    J_history(iter) = computeCost(X, y, theta);
 
+    J_history(iter) = computeCost(X, y, theta);
+    %fprintf('cost of iteration %d is %f',iter,J_history(iter) );
 end
+
+hold off;
+figure; 
+
+plot(J_history,'rx','MarkerSize',1);
+ylabel('J(theta) cost');
+xlabel('# of iterations');
 
 end
