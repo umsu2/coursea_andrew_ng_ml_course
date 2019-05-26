@@ -27,10 +27,18 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
-
+for i = 1:K
+  %allX = zeros(0, n);
+  %for j = idx
+  %  if j == i
+  %    allX = [allX, X(j,:)]
+  %  endif
+  %endfor 
+ 
+ %centroids(i) = mean(allX)
+ v = idx == i;
+ centroids(i,:) = sum(X .* v)/ sum(v) ;
+endfor 
 
 
 % =============================================================

@@ -22,7 +22,18 @@ idx = zeros(size(X,1), 1);
 %
 
 
+for i = 1:length(idx) 
+  x = X(i,:);
+  % repeat x K times so it can be subtracted at once
+  x = repmat(x,[K,1]);
+  diff = x - centroids; 
+  val = diff * diff';
+  val = eye(K) .* val;
+  allVal = sum(val);
+  [smallestValue, ind] = min(allVal);
+  idx(i) = ind;
 
+endfor 
 
 
 
